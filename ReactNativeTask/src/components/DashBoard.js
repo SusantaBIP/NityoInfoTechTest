@@ -91,7 +91,6 @@ const DashBoard = () => {
     }
   };
 
-
   const renderHeader = () => {
     return (
       <View
@@ -408,9 +407,9 @@ const DashBoard = () => {
             style={{
               width: 80,
               height: 46,
-                // backgroundColor: 'yellow',
-                flexWrap:'wrap',
-                flexDirection: 'row',
+              // backgroundColor: 'yellow',
+              flexWrap: 'wrap',
+              flexDirection: 'row',
             }}>
             <RNSpeedometer
               value={meterValue}
@@ -439,6 +438,7 @@ const DashBoard = () => {
             paddingRight: 20,
             paddingLeft: 20,
             paddingTop: 10,
+            marginBottom: 100,
           }}>
           <View
             style={{
@@ -478,8 +478,9 @@ const DashBoard = () => {
       <StatusBar backgroundColor="#00A3AD" barStyle={'light-content'} />
       <View style={{backgroundColor: '#FCFCFC'}}>
         {renderHeader()}
-        <ScrollView>
-          <View style={{flex: 1, backgroundColor: '#FCFCFC'}}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View
+            style={{flex: 1, backgroundColor: '#FCFCFC', marginBottom: 100}}>
             {renderBody()}
           </View>
         </ScrollView>
