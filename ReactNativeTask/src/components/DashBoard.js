@@ -4,7 +4,6 @@ import {
   Text,
   SafeAreaView,
   View,
-  StyleSheet,
   ScrollView,
   TextInput,
   Image,
@@ -13,6 +12,7 @@ import {
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import RNSpeedometer from 'react-native-speedometer';
+import {dashBoardStyles} from './dashBoardStyles';
 
 const DashBoard = () => {
   useEffect(() => {
@@ -93,52 +93,19 @@ const DashBoard = () => {
 
   const renderHeader = () => {
     return (
-      <View
-        style={{
-          height: 120,
-          backgroundColor: '#00A3AD',
-          borderBottomEndRadius: 20,
-          borderBottomLeftRadius: 20,
-          paddingLeft: 20,
-          paddingRight: 20,
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            height: 50,
-            alignItems: 'center',
-            marginTop: 20,
-          }}>
+      <View style={dashBoardStyles.headerContainer}>
+        <View style={dashBoardStyles.headerSubContainer}>
           <View style={{flexDirection: 'row'}}>
-            <Text style={{color: 'white', fontWeight: '400', fontSize: 18}}>
-              Pricing
-            </Text>
+            <Text style={dashBoardStyles.priceText}>Pricing</Text>
             <Image
               source={require('./../img/Path1.png')}
-              style={{
-                height: 10,
-                width: 12,
-                marginLeft: 8,
-                marginTop: 5,
-              }}></Image>
+              style={dashBoardStyles.imageStyle}></Image>
           </View>
           <View>
-            <Text
-              style={{
-                color: '#FFCD05',
-                textDecorationLine: 'underline',
-                fontWeight: '600',
-              }}>
-              Save & Exit
-            </Text>
+            <Text style={dashBoardStyles.saveText}>Save & Exit</Text>
           </View>
         </View>
-        <View
-          style={{
-            height: 50,
-            alignContent: 'center',
-          }}>
+        <View style={dashBoardStyles.headerDescText}>
           <Text style={{color: 'white'}}>
             Enter the price that you want to charge for renting out your car
           </Text>
@@ -169,27 +136,16 @@ const DashBoard = () => {
 
   const renderBody = () => {
     return (
-      <View
-        style={{paddingRight: 20, paddingLeft: 20, backgroundColor: '#FCFCFC'}}>
+      <View style={dashBoardStyles.bodyContainer}>
         <View style={{marginTop: 30}}>
           <View>
-            <Text style={{color: '#026786', fontSize: 12}}>
+            <Text style={dashBoardStyles.regularText}>
               Regular Price (Daily) *
             </Text>
           </View>
           <View>
             <TextInput
-              style={{
-                height: 40,
-                borderWidth: 1,
-                borderColor: '#E6E6E6',
-                borderRadius: 5,
-                backgroundColor: '#FFFFFF',
-                paddingLeft: 10,
-                color: '#026786',
-                fontSize: 16,
-                marginTop: 5,
-              }}
+              style={dashBoardStyles.inputTextRegularPrice}
               keyboardType={'numeric'}
               onChangeText={text => setRegularPrice(text)}>
               {regularPrice}
@@ -198,8 +154,8 @@ const DashBoard = () => {
           <View style={{marginTop: 10, flexDirection: 'row'}}>
             <Image
               source={require('./../img/info.png')}
-              style={{height: 14, width: 14}}></Image>
-            <Text style={{color: '#026786', fontSize: 12, marginLeft: 5}}>
+              style={dashBoardStyles.infoIcon}></Image>
+            <Text style={dashBoardStyles.regularTextDesc}>
               Our pricing algorithm recommends price between $55 - 70 to
               maximise demand basis your car type and location
             </Text>
@@ -213,17 +169,7 @@ const DashBoard = () => {
           </View>
           <View>
             <TextInput
-              style={{
-                height: 40,
-                borderWidth: 1,
-                borderColor: '#E6E6E6',
-                borderRadius: 5,
-                backgroundColor: '#FFFFFF',
-                paddingLeft: 10,
-                color: '#026786',
-                fontSize: 16,
-                marginTop: 5,
-              }}
+              style={dashBoardStyles.inputTextPickPrice}
               keyboardType={'numeric'}
               onChangeText={text => setPickPrice(text)}>
               {pickPrice}
@@ -232,17 +178,15 @@ const DashBoard = () => {
           <View style={{marginTop: 10, flexDirection: 'row'}}>
             <Image
               source={require('./../img/info.png')}
-              style={{height: 14, width: 14}}></Image>
-            <Text style={{color: '#026786', fontSize: 12, marginLeft: 5}}>
+              style={dashBoardStyles.infoIcon}></Image>
+            <Text style={dashBoardStyles.pickPriceTextDesc}>
               Peak price allow you to charge extra for weekends or holidays.
               Recommended peak price for your car is between $75-90.
             </Text>
           </View>
         </View>
         <View>
-          <Text style={{color: '#026786', fontSize: 12, marginTop: 30}}>
-            Peak Price Days
-          </Text>
+          <Text style={dashBoardStyles.pickPriceTitle}>Peak Price Days</Text>
           <View
             style={{
               flexDirection: 'row',
@@ -280,52 +224,12 @@ const DashBoard = () => {
                 </TouchableOpacity>
               );
             })}
-            {/* {days.map(item => {
-              return ( */}
-            {/* <View
-              style={{
-                height: 40,
-                width: 40,
-                // borderRadius: 10,
-                color: 'red', //#00A3AD
-                marginLeft: 7,
-              }}> */}
-            {/* <Text>{item.name ? item.name : ''}</Text> */}
-            {/* </View>
-            <View
-              style={{
-                height: 40,
-                width: 40,
-                // borderRadius: 10,
-                color: 'red', //#00A3AD
-                marginLeft: 7,
-              }}></View> */}
-            {/* //   );
-            // })} */}
           </View>
         </View>
-        <View
-          style={{
-            height: 95,
-            marginLeft: -20,
-            marginRight: -20,
-            marginTop: 15,
-            borderTopColor: '#E6E6E6',
-            borderTopWidth: 1,
-            borderBottomWidth: 1,
-            borderBottomColor: '#E6E6E6',
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginTop: 15,
-              paddingLeft: 20,
-              paddingRight: 20,
-            }}>
+        <View style={dashBoardStyles.pickPriceView}>
+          <View style={dashBoardStyles.pickPriceSubView}>
             <View style={{flexDirection: 'row'}}>
-              <Text style={{color: '#026786', fontWeight: '500', fontSize: 16}}>
+              <Text style={dashBoardStyles.pickPriceSwitchTitle}>
                 Set peak price on public holidays
               </Text>
             </View>
@@ -340,14 +244,7 @@ const DashBoard = () => {
               />
             </View>
           </View>
-          <View
-            style={{
-              height: 50,
-              alignContent: 'center',
-              paddingLeft: 20,
-              paddingRight: 20,
-              marginTop: 8,
-            }}>
+          <View style={dashBoardStyles.pickPriceAutomaticApply}>
             <Text style={{color: '#026786', fontSize: 12, fontWeight: '300'}}>
               Automatically apply peak prices on public holidays.
             </Text>
@@ -357,13 +254,7 @@ const DashBoard = () => {
           style={{
             height: 95,
           }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginTop: 15,
-            }}>
+          <View style={dashBoardStyles.longTermRentalView}>
             <View style={{flexDirection: 'row'}}>
               <Text style={{color: '#026786', fontWeight: '500', fontSize: 16}}>
                 Long Term Rental
@@ -392,33 +283,15 @@ const DashBoard = () => {
             </Text>
           </View>
         </View>
-        <View
-          style={{
-            height: 70,
-            backgroundColor: '#EFF7F8',
-            marginRight: -20,
-            marginLeft: -20,
-            flexDirection: 'row',
-            paddingRight: 20,
-            paddingLeft: 20,
-            alignItems: 'center',
-          }}>
-          <View
-            style={{
-              width: 80,
-              height: 46,
-              // backgroundColor: 'yellow',
-              flexWrap: 'wrap',
-              flexDirection: 'row',
-            }}>
+        <View style={dashBoardStyles.buttonViewContainer}>
+          <View style={dashBoardStyles.buttonViewSubContainer}>
             <RNSpeedometer
               value={meterValue}
               size={85}
               labels={speedoMeterLabel}
             />
           </View>
-          <View
-            style={{marginLeft: 10, flex: 1, flexDirection: 'row', height: 46}}>
+          <View style={dashBoardStyles.demandTypeTitle}>
             <Text style={{color: '#026786', fontSize: 12, fontWeight: '700'}}>
               {demandType}
               <Text style={{color: '#026786', fontSize: 12, fontWeight: '300'}}>
@@ -428,41 +301,14 @@ const DashBoard = () => {
             </Text>
           </View>
         </View>
-        <View
-          style={{
-            height: 100,
-            backgroundColor: '#FFFFFF',
-            marginRight: -20,
-            marginLeft: -20,
-            flexDirection: 'row',
-            paddingRight: 20,
-            paddingLeft: 20,
-            paddingTop: 10,
-            marginBottom: 100,
-          }}>
-          <View
-            style={{
-              width: 45,
-              height: 45,
-              borderRadius: 5,
-              borderColor: '#00A3AD',
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderWidth: 1,
-            }}>
+        <View style={dashBoardStyles.nextButtonContainer}>
+          <View style={dashBoardStyles.nextButtonSubContainer}>
             <Image
               source={require('./../img/arrow-left.png')}
               style={{height: 20, width: 20}}></Image>
           </View>
           <View style={{marginLeft: 10, flex: 1}}>
-            <TouchableOpacity
-              style={{
-                height: 44,
-                backgroundColor: '#00A3AD',
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: 5,
-              }}>
+            <TouchableOpacity style={dashBoardStyles.nextButton}>
               <Text style={{fontSize: 16, fontWeight: '700', color: '#FCFCFC'}}>
                 Next
               </Text>
@@ -474,27 +320,18 @@ const DashBoard = () => {
   };
 
   return (
-    <SafeAreaView style={{backgroundColor: '#00A3AD'}}>
+    <SafeAreaView style={dashBoardStyles.safeArea}>
       <StatusBar backgroundColor="#00A3AD" barStyle={'light-content'} />
-      <View style={{backgroundColor: '#FCFCFC'}}>
+      <View style={dashBoardStyles.container}>
         {renderHeader()}
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View
-            style={{flex: 1, backgroundColor: '#FCFCFC', marginBottom: 100}}>
-            {renderBody()}
-          </View>
+          <View style={dashBoardStyles.mainBodyContainer}>{renderBody()}</View>
         </ScrollView>
       </View>
     </SafeAreaView>
   );
 };
 export default DashBoard;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 const speedoMeterLabel = [
   {
